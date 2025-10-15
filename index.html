@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Diamond Nails and Lashes Salon offers luxury nail and lash artistry in Johannesburg, specializing in manicures, pedicures, lash extensions, and bespoke nail designs.">
+  <meta name="keywords" content="nail salon, luxury nails, manicure, pedicure, Johannesburg, nail artistry">
+  <meta property="og:title" content="Diamond Nails and Lashes Salon - Luxury Nail Artistry">
+  <meta property="og:description" content="Experience exquisite nail and lash care and artistry at Diamond Nails and Lashes Salon in Johannesburg.">
+  <meta property="og:image" content="https://cdn.diamondnails.co.za/images/og-image.webp">
+  <meta property="og:url" content="https://diamondnails.co.za">
+  <link rel="canonical" href="https://diamondnails.co.za">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style">
+  <title>Diamond Nails & Lashes Salon - Luxury Nail Artistry</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+    .font-cormorant{font-family:'Cormorant Garamond',serif}
+    .font-inter{font-family:'Inter',sans-serif}
+    .luxury-gradient{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%)}
+    /* gold color replaced with #D4A017 */
+    .gold-accent{color:#D4A017}
+    .elegant-card{background:rgba(255,255,255,.03);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);transition:all .6s cubic-bezier(.23,1,.32,1)}
+    .elegant-card:hover{background:rgba(255,255,255,.08);border-color:rgba(212,160,23,.3);transform:translateY(-8px);box-shadow:0 32px 64px rgba(0,0,0,.3)}
+    .service-card{background:linear-gradient(145deg,#fff 0%,#f8f9fa 100%);border:1px solid #e9ecef;transition:all .5s ease}
+    .service-card:hover{transform:translateY(-12px);box-shadow:0 25px 50px rgba(0,0,0,.15);border-color:#D4A017}
+    .luxury-btn{background:linear-gradient(135deg,#D4A017 0%,#D4A017 50%,#D4A017 100%);transition:all .4s ease;position:relative;overflow:hidden}
+    .luxury-btn::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transition:left .5s}
+    .luxury-btn:hover::before{left:100%}
+    .luxury-btn:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(212,160,23,.4)}
+    .elegant-divider{height:1px;background:linear-gradient(90deg,transparent,#D4A017,transparent);width:120px;margin:0 auto}
+    .text-shadow{text-shadow:0 2px 4px rgba(0,0,0,.1)}
+    /* Custom classes for artist information to improve maintainability */
+    .artist-name{font-family:'Cormorant Garamond',serif;font-size:1.875rem;line-height:2.25rem;font-weight:700;color:#111827;margin-bottom:0.75rem}
+    .artist-title{color:#4b5563;margin-bottom:2rem;letter-spacing:0.025em}
+    /* Performance optimization: Lazy load images and add error handling */
+    .lazy-image{transition:opacity 0.3s ease-in-out;opacity:0}
+    .lazy-image.loaded{opacity:1}
+    /* Error handling: Graceful fallbacks for missing content */
+    .error-fallback{display:none;color:#6b7280;font-size:0.875rem;text-align:center;padding:1rem}
+    .error-fallback.show{display:block}
+    /* Counter animation for statistics */
+    .counter-number{transition: all 0.3s ease-out}
+  </style>
+</head>
+<body class="font-inter bg-white text-gray-900 selection:bg-yellow-100 selection:text-gray-900">
+  <!-- Toasts -->
+  <div id="toast" class="fixed top-4 right-4 z-[100] hidden md:top-4 md:right-4 top-2 left-2 right-2">
+    <div id="toastInner" class="rounded-lg px-5 py-4 shadow-xl text-sm"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="fixed w-full top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100" aria-label="Main navigation">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex justify-between items-center h-20">
+        <div class="font-cormorant text-3xl font-bold text-gray-900">
+          Diamond <span class="gold-accent">Nails & Lashes Salon</span>
+        </div>
+        <button id="mobileMenuBtn" class="md:hidden p-2" aria-label="Toggle menu" aria-expanded="false">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+        <div class="hidden md:flex space-x-12">
+          <a href="#home" class="navlink text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-wide">Home</a>
+          <a href="#services" class="navlink text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-wide">Services</a>
+          <a href="#gallery" class="navlink text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-wide">Gallery</a>
+          <a href="#about" class="navlink text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-wide">About</a>
+          <a href="#contact" class="navlink text-gray-700 hover:text-gray-900 transition-colors font-medium tracking-wide">Contact</a>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden absolute top-20 left-0 w-full bg-white/95 backdrop-blur-md px-8 py-6">
+          <div class="flex flex-col space-y-4">
+            <a href="#home" class="navlink text-gray-700 hover:text-gray-900 font-medium tracking-wide">Home</a>
+            <a href="#services" class="navlink text-gray-700 hover:text-gray-900 font-medium tracking-wide">Services</a>
+            <a href="#gallery" class="navlink text-gray-700 hover:text-gray-900 font-medium tracking-wide">Gallery</a>
+            <a href="#about" class="navlink text-gray-700 hover:text-gray-900 font-medium tracking-wide">About</a>
+            <a href="#contact" class="navlink text-gray-700 hover:text-gray-900 font-medium tracking-wide">Contact</a>
+          </div>
+        </div>
+        <a href="#contact" class="luxury-btn text-gray-900 px-8 py-3 rounded font-semibold tracking-wide">Book Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home" class="min-h-screen flex items-center bg-gradient-to-br from-gray-50 to-white relative overflow-hidden pt-24">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/5 to-transparent"></div>
+    <div class="max-w-7xl mx-auto px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+        <div>
+          <div class="elegant-divider mb-12"></div>
+          <h1 class="font-cormorant text-7xl lg:text-8xl font-bold text-gray-900 mb-8 leading-none text-shadow">
+            Exquisite
+            <span class="gold-accent block text-6xl lg:text-7xl">Nail Artistry</span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-12 leading-relaxed max-w-lg font-light">
+            Where precision meets luxury. Experience the finest in nail care and artistry in an atmosphere of refined sophistication.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6">
+            <a href="#contact" class="luxury-btn text-gray-900 px-10 py-4 rounded font-semibold text-lg tracking-wide text-center">Reserve Your Session</a>
+            <a href="#gallery" class="border-2 border-gray-300 text-gray-700 px-10 py-4 rounded font-semibold text-lg hover:border-gray-900 hover:text-gray-900 transition-all duration-300 tracking-wide text-center">View Portfolio</a>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <!-- Hero video container with gradient background and shadow -->
+          <div class="bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg shadow-2xl p-8">
+            <!-- Video element for landing page media with fallback handling -->
+            <video
+              src="Components/Landing page.mp4"
+              alt="Close-up of elegant nail artistry with gold and white designs in a luxurious spa setting"
+              class="aspect-[4/3] rounded-lg object-cover mx-auto max-w-full"
+              preload="metadata"
+              muted
+              autoplay
+              loop
+              playsinline
+              poster="Components/Landing page.jpg"
+              aria-label="Promotional video showcasing nail artistry services"
+            >
+              <!-- Fallback content for browsers that don't support video or if video fails to load -->
+              <source src="Components/Landing page.mp4" type="video/mp4">
+              <div class="flex items-center justify-center h-full bg-gray-200 rounded-lg">
+                <p class="text-gray-600 text-center px-4">
+                  Video unavailable. Please view our gallery for examples of our work.
+                  <br>
+                  <a href="#gallery" class="text-blue-600 hover:underline">View Gallery</a>
+                </p>
+              </div>
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-24">
+        <div class="elegant-divider mb-8"></div>
+        <h2 class="font-cormorant text-6xl font-bold text-gray-900 mb-6">Signature <span class="gold-accent">Services</span></h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
+          Each service is meticulously crafted to deliver an unparalleled experience of luxury and precision
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Card 1 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <div class="flex justify-center mb-8">
+            <img
+              src="Components/Classic Manicure.jpeg"
+              alt="Classic manicure with red polish on a soft white towel with rose petals"
+              class="aspect-square rounded-xl object-cover max-w-full w-64"
+              loading="lazy"
+              width="256"
+              height="256"
+              onerror="this.src='Components/placeholder.jpg'; this.alt='Service image temporarily unavailable'"
+            >
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Classic Manicure</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">Timeless elegance with meticulous cuticle care, precise shaping, and flawless polish application.</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R180</span>
+            <span class="text-gray-500 text-sm">45 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+        <!-- Card 2 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <!-- Service image container for Gel Manicure -->
+          <div class="flex justify-center mb-8">
+            <img
+              src="Components/gel.jpeg"
+              alt="Glossy gel manicure with bold colors on a sleek modern background"
+              class="aspect-square rounded-xl object-cover max-w-full w-64"
+              loading="lazy"
+              width="256"
+              height="256"
+              onerror="this.src='Components/placeholder.jpg'; this.alt='Service image temporarily unavailable'"
+            >
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Gel Manicure</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">Long-lasting perfection with premium gel formulations for exceptional durability and mirror-like shine.</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R280</span>
+            <span class="text-gray-500 text-sm">60 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+        <!-- Card 3 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <!-- Service image container for Bespoke Nail Art -->
+          <div class="flex justify-center mb-8">
+            <img
+              src="Components/Glossy nail finish with chrome and gold accents on a velvet backdrop_on african american hands.jpg"
+              alt="Intricate bespoke nail art with geometric patterns and gold foil details"
+              class="aspect-square rounded-xl object-cover max-w-full w-64"
+              loading="lazy"
+              width="256"
+              height="256"
+              onerror="this.src='Components/Glossy nail finish with chrome and gold accents on a velvet backdrop_on african amarican hands.jpg'; this.alt='Service image temporarily unavailable'"
+            >
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Bespoke Nail Art</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">Custom artistic creations tailored to your vision, from minimalist elegance to intricate masterpieces.</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R350</span>
+            <span class="text-gray-500 text-sm">90 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+        <!-- Card 4 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <div class="flex justify-center mb-8">
+            <img src="Components/luxury pedicure with soft pink polish surrounded by spar elements, african american foot.jpg" alt="Luxury pedicure with soft pink polish surrounded by spa elements" class="aspect-square rounded-xl object-cover max-w-full w-64" loading="lazy" width="256" height="256" onerror="this.src='Components/placeholder.jpg'; this.alt='Service image temporarily unavailable'">
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Luxury Pedicure</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">Indulgent foot therapy with exfoliation, therapeutic massage, and impeccable finishing touches.</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R220</span>
+            <span class="text-gray-500 text-sm">75 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+        <!-- Card 5 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <div class="flex justify-center mb-8">
+            <img src="Components/468728950_18310842559162710_7415684597662222781_n.jpg" alt="Natural-looking nail extensions with an ombre effect on a marble countertop" class="aspect-square rounded-xl object-cover max-w-full w-64" loading="lazy" width="256" height="256" onerror="this.src='Components/placeholder.jpg'; this.alt='Service image temporarily unavailable'">
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Mani-Pedi Combo</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">Professional manicure and pedicure services using premium products for a polished, natural-looking finish and lasting elegance</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R450</span>
+            <span class="text-gray-500 text-sm">120 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+        <!-- Card 6 -->
+        <div class="service-card rounded-2xl p-10 group h-full flex flex-col justify-between">
+          <div class="flex justify-center mb-8">
+            <img src="Components/Lashes.jpg" alt="Lashes" class="aspect-square rounded-xl object-cover max-w-full w-64" loading="lazy" width="256" height="256" onerror="this.src='Components/placeholder.jpg'; this.alt='Service image temporarily unavailable'">
+          </div>
+          <h3 class="font-cormorant text-3xl font-semibold text-gray-900 mb-4 text-center">Lashes</h3>
+          <p class="text-gray-600 mb-8 leading-relaxed font-light text-center">The ultimate luxury treatment for your lashes, enhancing your natural beauty with precision and care.</p>
+          <div class="flex items-center justify-between mb-8">
+            <span class="text-4xl font-bold gold-accent">R180</span>
+            <span class="text-gray-500 text-sm">60 minutes</span>
+          </div>
+          <a href="#contact" class="w-full bg-gray-900 text-white py-4 rounded font-medium hover:bg-gray-800 transition-colors tracking-wide text-center block">Reserve Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-32 luxury-gradient">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-24">
+        <div class="elegant-divider mb-8"></div>
+        <h2 class="font-cormorant text-6xl font-bold text-white mb-6">Artistry <span class="gold-accent">Portfolio</span></h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+          A curated collection of our finest creations, each piece a testament to precision and artistry
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="elegant-card rounded-2xl overflow-hidden">
+          <div class="flex justify-center">
+            <img src="Components/french.jpg" alt="French manicure with modern gold tips in a Parisian-inspired setting" class="aspect-square object-cover max-w-full w-full" loading="lazy">
+          </div>
+          <div class="p-6 text-white text-center">
+            <h4 class="font-cormorant text-xl font-semibold mb-2">French Elegance</h4>
+            <p class="text-gray-300 text-sm font-light">Timeless sophistication</p>
+          </div>
+        </div>
+        <div class="elegant-card rounded-2xl overflow-hidden">
+          <div class="flex justify-center">
+            <img src="Components/elegance.png" alt="Minimalist nail art with neutral tones and clean lines on a sleek black background" class="aspect-square object-cover max-w-full w-full" loading="lazy">
+          </div>
+          <div class="p-6 text-white text-center">
+            <h4 class="font-cormorant text-xl font-semibold mb-2">Minimalist Art</h4>
+            <p class="text-gray-300 text-sm font-light">Refined simplicity</p>
+          </div>
+        </div>
+        <div class="elegant-card rounded-2xl overflow-hidden">
+          <div class="flex justify-center">
+            <img src="Components/intricated bespoke nail art with geometric patterns and gold foil details on an african american hand.jpg" alt="Geometric nail design with bold angles and vibrant colors" class="aspect-square object-cover max-w-full w-full" loading="lazy">
+          </div>
+          <div class="p-6 text-white text-center">
+            <h4 class="font-cormorant text-xl font-semibold mb-2">Geometric Precision</h4>
+            <p class="text-gray-300 text-sm font-light">Modern architecture</p>
+          </div>
+        </div>
+        <div class="elegant-card rounded-2xl overflow-hidden">
+          <div class="flex justify-center">
+            <img src="Components/472277673_1224463911989299_6157308405366960848_n.jpg" alt="Glossy nail finish with chrome and gold accents on a velvet backdrop" class="aspect-square object-cover max-w-full w-full" loading="lazy">
+          </div>
+          <div class="p-6 text-white text-center">
+            <h4 class="font-cormorant text-xl font-semibold mb-2">Luxury Finish</h4>
+            <p class="text-gray-300 text-sm font-light">Premium perfection</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-32 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+        <div>
+          <div class="elegant-divider mb-8"></div>
+          <h2 class="font-cormorant text-6xl font-bold text-gray-900 mb-8">Meet <span class="gold-accent">Diamond</span></h2>
+          <p class="artist-description text-xl text-gray-600 mb-8 leading-relaxed font-light" aria-label="Artist philosophy description">
+            With almost a decade of dedication to the art of nail design, I have cultivated a philosophy that marries technical precision with creative vision.
+          </p>
+          <p class="text-lg text-gray-600 mb-12 leading-relaxed font-light">
+            Each client receives my undivided attention in an atmosphere of tranquil luxury, where every detail is considered and every expectation exceeded. My commitment to excellence has earned the trust of discerning clients who appreciate the finest in nail artistry.
+          </p>
+          <div class="grid grid-cols-3 gap-8 text-center">
+            <div><div class="text-5xl font-bold gold-accent mb-3 counter-number" data-target="250">0+</div><div class="text-gray-600 font-medium tracking-wide">Satisfied Clients</div></div>
+            <div><div class="text-5xl font-bold gold-accent mb-3 counter-number" data-target="7">0</div><div class="text-gray-600 font-medium tracking-wide">Years Mastery</div></div>
+            <div><div class="text-5xl font-bold gold-accent mb-3 counter-number" data-target="5.0">0.0</div><div class="text-gray-600 font-medium tracking-wide">Client Rating</div></div>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <div class="bg-white rounded-2xl p-12 shadow-2xl max-w-md">
+            <div class="text-center">
+              <div class="mb-8 flex justify-center">
+                <!-- Optimized image with lazy loading, error handling, and performance attributes -->
+                <img
+                  src="Components/diamond.jpeg"
+                  alt="Portrait of Diamond Laurent, master nail artisan, in a luxurious salon setting"
+                  class="w-48 h-48 rounded-full object-cover lazy-image"
+                  loading="lazy"
+                  decoding="async"
+                  width="192"
+                  height="192"
+                  onerror="this.src='Components/placeholder.jpg'; this.alt='Artist portrait temporarily unavailable'; this.classList.add('loaded')"
+                  onload="this.classList.add('loaded')"
+                >
+              </div>
+              <!-- Artist information with semantic markup, accessibility, and error handling -->
+              <h3 class="artist-name" role="heading" aria-level="3">Diamond</h3>
+              <p class="artist-title" role="text" aria-label="Professional title">Master Nail Artisan & Studio Director</p>
+              <!-- Error fallback for artist information -->
+              <div class="error-fallback" id="artistError" aria-live="polite">
+                Artist information temporarily unavailable. Please contact us for details.
+              </div>
+              <div class="space-y-6">
+                <div class="flex items-center justify-center space-x-2">
+                  <span class="text-yellow-400 text-xl">★★★★★</span>
+                  <span class="text-gray-600 font-medium">Exceptional Reviews</span>
+                </div>
+                <div class="text-gray-600 italic font-light max-w-sm mx-auto">
+                  "Diamond's artistry is unparalleled. Every visit is a luxurious experience that exceeds expectations."
+                </div>
+                <div class="text-gray-500 text-sm">— Isabella M., Regular Client</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-24">
+        <div class="elegant-divider mb-8"></div>
+        <h2 class="font-cormorant text-6xl font-bold text-gray-900 mb-6">
+          Reserve Your <span class="gold-accent">Experience</span>
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
+          Begin your journey to exceptional nail artistry with a personalized consultation
+        </p>
+      </div>
+      <div class="grid lg:grid-cols-2 gap-16 mb-16">
+        <!-- Studio info -->
+        <div class="bg-gray-50 rounded-2xl p-12">
+          <h3 class="font-cormorant text-3xl font-bold text-gray-900 mb-10">Studio Information</h3>
+          <div class="space-y-8">
+            <div class="flex items-start space-x-6">
+              <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 mb-2 tracking-wide">Private Studio Location</div>
+                <div class="text-gray-600 font-light">46 Plein Street<br/>Johannesburg, South Africa</div>
+              </div>
+            </div>
+            <div class="flex items-start space-x-6">
+              <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 mb-2 tracking-wide">Direct Line</div>
+                <div class="text-gray-600 font-light">011 234 5678</div>
+              </div>
+            </div>
+            <div class="flex items-start space-x-6">
+              <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 mb-2 tracking-wide">Email Correspondence</div>
+                <div class="text-gray-600 font-light">diamond@diamondnails.co.za</div>
+              </div>
+            </div>
+            <div class="flex items-start space-x-6">
+              <div class="w-12 h-12 bg-gray-900 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg width="20" height="20" fill="white" viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+              </div>
+              <div>
+                <div class="font-semibold text-gray-900 mb-2 tracking-wide">Studio Hours</div>
+                <div class="text-gray-600 font-light">
+                  Tuesday - Friday: 10:00 - 18:00<br/>Saturday: 09:00 - 17:00<br/>Sunday & Monday: By Appointment
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Live Map -->
+        <div class="bg-gray-50 rounded-2xl p-12">
+          <h3 class="font-cormorant text-3xl font-bold text-gray-900 mb-10">Find Us</h3>
+          <div class="aspect-video rounded-xl overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.5!2d28.0473!3d-26.2041!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e950c1b1b1b1b1b%3A0x1b1b1b1b1b1b1b1b!2s46%20Plein%20Street%2C%20Johannesburg%2C%20South%20Africa!5e0!3m2!1sen!2s!4v169876543210!5m2!1sen!2s"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              aria-label="Interactive map showing Diamond Nails & Lashes Salon location at 46 Plein Street, Johannesburg, South Africa"
+            ></iframe>
+          </div>
+          <p class="text-sm text-gray-600 mt-4 font-light text-center">46 Plein Street, Johannesburg, South Africa</p>
+        </div>
+      </div>
+      <!-- Appointment Request Form -->
+      <div class="max-w-4xl mx-auto">
+        <div class="bg-gray-50 rounded-2xl p-12">
+          <h3 class="font-cormorant text-3xl font-bold text-gray-900 mb-10 text-center">Appointment Request</h3>
+          <form id="consultForm" class="bg-white border-2 border-gray-200 rounded-xl p-8 text-center" data-endpoint="/consultations" novalidate>
+            <div class="mb-6">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mx-auto text-gray-400" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+            </div>
+            <h4 class="font-cormorant text-xl font-semibold text-gray-800 mb-3">Book an Appointment</h4>
+            <p class="text-sm text-gray-600 mb-8 font-light">Complete the form and we'll confirm shortly.</p>
+            <div class="space-y-4 text-left">
+              <div>
+                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1">Full Name*</label>
+                <input id="fullName" name="full_name" type="text" placeholder="Full Name" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light" required aria-required="true">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address*</label>
+                <input id="email" name="email" type="email" placeholder="Email Address" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light" required aria-required="true">
+              </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Contact Number</label>
+                <input id="phone" name="phone" type="tel" placeholder="Contact Number" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light">
+              </div>
+              <div>
+                <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Preferred Service*</label>
+                <select id="service" name="service" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light" required aria-required="true">
+                  <option value="">Select Preferred Service</option>
+                  <option>Classic Manicure - R180</option>
+                  <option>Gel Manicure - R280</option>
+                  <option>Bespoke Nail Art - R350</option>
+                  <option>Luxury Pedicure - R220</option>
+                  <option>Mani-Pedi - R450</option>
+                  <option>Lashes - R180</option>
+                </select>
+              </div>
+
+              <!-- Added date & time fields -->
+              <div>
+                <label for="dateInput" class="block text-sm font-medium text-gray-700 mb-1">Choose Your Date*</label>
+                <input id="dateInput" name="preferred_date" type="date" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light" required aria-required="true">
+              </div>
+              <div>
+                <label for="timeInput" class="block text-sm font-medium text-gray-700 mb-1">Choose Your Time*</label>
+                <input id="timeInput" name="preferred_time" type="time" class="w-full p-4 border border-gray-200 rounded-lg focus:border-gray-400 focus:outline-none font-light" required aria-required="true">
+              </div>
+              <!-- End added fields -->
+
+              <div>
+                <label for="notes" class="block text-sm font-medium text-gray-700 mb-1">Special Requests</label>
+                <textarea id="notes" name="notes" placeholder="Preferred appointment time and any special requests" class="w-full p-4 border border-gray-200 rounded-lg h-24 focus:border-gray-400 focus:outline-none font-light"></textarea>
+              </div>
+              <button id="submitConsultation" class="luxury-btn w-full text-gray-900 py-4 rounded-lg font-semibold tracking-wide">Request Appointment</button>
+              <p class="text-xs text-gray-500 mt-2">By submitting, you consent to be contacted regarding your booking.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="luxury-gradient text-white py-20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center">
+        <div class="font-cormorant text-4xl font-bold mb-6">
+          Diamond <span class="gold-accent">Nails & Lashes Salon</span>
+        </div>
+        <p class="text-gray-300 text-lg mb-12 font-light">Where artistry meets luxury</p>
+        <div class="flex justify-center space-x-12 mb-16">
+          <a href="https://www.facebook.com/diamondnails144" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-3 group">
+            <div class="p-4 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+            </div>
+            <span class="font-medium tracking-wide">Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/diamond_nails101?igsh=YzljYTk1ODg3Zg==" class="text-gray-300 hover:text-white transition-colors flex items-center space-x-3 group">
+            <div class="p-4 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-300">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </div>
+            <span class="font-medium tracking-wide">Instagram</span>
+          </a>
+        </div>
+        <!-- Footer Copyright Section -->
+        <div class="border-t border-gray-600 pt-12">
+          <p class="text-gray-300 font-light">
+            &copy; <span id="currentYear" data-fallback="2025">2025</span> Diamond Nails & Lashes Salon. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', menu.classList.contains('hidden') ? 'false' : 'true');
+    });
+
+    // Active nav link on scroll
+    const sections = [...document.querySelectorAll('section[id]')];
+    const navLinks = [...document.querySelectorAll('.navlink')];
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        const top = s.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = s.getAttribute('id');
+        }
+      });
+      navLinks.forEach(l => {
+        const match = l.getAttribute('href') === '#' + current;
+        l.classList.toggle('text-gray-900', match);
+        l.classList.toggle('text-gray-700', !match);
+      });
+    });
+
+    // Toast helpers
+    function showToast(msg, type = 'success') {
+      const box = document.getElementById('toast');
+      const inner = document.getElementById('toastInner');
+      inner.textContent = msg;
+      inner.className = 'rounded-lg px-5 py-4 shadow-xl text-sm ' + (type === 'success' ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white');
+      box.classList.remove('hidden');
+      setTimeout(() => box.classList.add('hidden'), 3500);
+    }
+
+    // Form submit
+    (function () {
+      const form = document.getElementById('consultForm');
+      if (!form) return;
+      const btn = document.getElementById('submitConsultation');
+
+      form.addEventListener('submit', e => e.preventDefault());
+      btn.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const payload = {
+          full_name: document.getElementById('fullName')?.value?.trim(),
+          email: document.getElementById('email')?.value?.trim(),
+          phone: document.getElementById('phone')?.value?.trim(),
+          service: document.getElementById('service')?.value,
+          preferred_date: document.getElementById('dateInput')?.value?.trim(),
+          preferred_time: document.getElementById('timeInput')?.value?.trim(),
+          notes: document.getElementById('notes')?.value?.trim()
+        };
+
+        // Client validation
+        const errs = [];
+        if (!payload.full_name) errs.push('Full name is required.');
+        if (!payload.email || !payload.email.includes('@')) errs.push('A valid email is required.');
+        if (!payload.service || payload.service === '') errs.push('Please select a service.');
+        if (!payload.preferred_date) errs.push('Please choose a date.');
+        if (!payload.preferred_time) errs.push('Please choose a time.');
+        if (payload.phone && !/^[+]?[\d\s-]{10,}$/.test(payload.phone)) errs.push('Please enter a valid phone number.');
+        if (errs.length) {
+          showToast(errs.join(' '), 'error');
+          return;
+        }
+
+        const endpoint = form.dataset.endpoint;
+        btn.disabled = true;
+        const old = btn.textContent;
+        btn.textContent = 'Submitting...';
+
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            const msg = (data && data.errors) ? data.errors.join(' ') : 'Submission failed. Please try again.';
+            showToast(msg, 'error');
+          } else {
+            showToast(data.message || 'Request received. We will contact you shortly.', 'success');
+            form.reset();
+          }
+        } catch (err) {
+          showToast('Could not contact backend. Please try again later.', 'error');
+          console.error(err);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = old;
+        }
+      });
+    })();
+
+    // Dynamic copyright year update
+    (function() {
+      const yearElement = document.getElementById('currentYear');
+      if (yearElement) {
+        try {
+          const currentYear = new Date().getFullYear();
+          yearElement.textContent = currentYear;
+        } catch (error) {
+          console.warn('Failed to update copyright year:', error);
+          // Fallback to data attribute if available
+          const fallback = yearElement.getAttribute('data-fallback');
+          if (fallback) {
+            yearElement.textContent = fallback;
+          }
+        }
+      }
+    })();
+
+    // Error handling for artist section
+    (function() {
+      const artistName = document.querySelector('.artist-name');
+      const artistTitle = document.querySelector('.artist-title');
+      const errorFallback = document.getElementById('artistError');
+
+      // Check if content loaded properly
+      if (artistName && artistTitle && errorFallback) {
+        // Simulate content validation (in real app, this could check API response)
+        const isContentValid = artistName.textContent.trim() && artistTitle.textContent.trim();
+
+        if (!isContentValid) {
+          errorFallback.classList.add('show');
+          artistName.style.display = 'none';
+          artistTitle.style.display = 'none';
+        }
+      }
+    })();
+
+    // Animated counter for statistics section
+    (function() {
+      const counters = document.querySelectorAll('.counter-number');
+      const aboutSection = document.getElementById('about');
+      let hasAnimated = false;
+
+      function animateCounter(counter) {
+        const target = parseFloat(counter.getAttribute('data-target'));
+        const isDecimal = target % 1 !== 0;
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+
+          if (isDecimal) {
+            counter.textContent = current.toFixed(1);
+          } else {
+            counter.textContent = Math.floor(current) + (counter.textContent.includes('+') ? '+' : '');
+          }
+        }, 16);
+      }
+
+      function checkScroll() {
+        if (hasAnimated) return;
+
+        const rect = aboutSection.getBoundingClientRect();
+        const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+
+        if (isVisible) {
+          hasAnimated = true;
+          counters.forEach(counter => {
+            setTimeout(() => animateCounter(counter), 300); // Small delay for better UX
+          });
+        }
+      }
+
+      // Check on load and scroll
+      checkScroll();
+      window.addEventListener('scroll', checkScroll);
+    })();
+  </script>
+</body>
+</html>
